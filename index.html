@@ -155,20 +155,36 @@
 </div>
 <p>建議下次有適合的時機，試著從「請分析」進階到「請改」。<strong>你的把關習慣 + Cursor 的 Accept/Reject 機制 = 安全又有效率</strong>。如果改出來品質不好可以馬上 reject，沒有任何負擔。</p>
 
-<h4>2. 同類型編譯錯誤一次解決</h4>
+<h4>2. 用 <code>@</code> 語法指定檔案，比截圖或打檔名更準</h4>
+<p>觀察到你目前指定要 AI 分析的檔案，主要用兩種方式：</p>
+<ul>
+  <li>直接打檔名（例如「請分析 UIGVECardOverviewMain.cs」）— AI 要自己去搜尋，可能找錯版本或漏看</li>
+  <li>截圖讓 AI 辨識 IDE 中的檔案 — AI 要從像素去推斷檔名，精度有限</li>
+</ul>
+<p>這兩種方式 AI 都得「猜」你指的是哪個檔，分析時容易看不到完整內容。建議改用 Cursor 內建的 <code>@</code> 語法：</p>
+<div class="tip">
+<strong>怎麼用：</strong>在 Chat 輸入框打 <code>@</code>，會跳出檔案/資料夾的自動完成清單，選一個就會把<strong>整個檔案內容直接餵給 AI</strong>，不用 AI 自己去找。<br>
+<strong>範例：</strong>
+<div class="prompt">@UIGVECardOverviewMain.cs 請分析這個類別的職責與資料流向</div>
+<div class="prompt">@AINpc.cs @AINpcManager.cs @AINpcSystem.cs 這三個的職責怎麼分配</div>
+還可以指定範圍：<code>@UIGVECardOverviewMain.cs (1-100)</code> 只餵 1-100 行。
+</div>
+<p>趙健智和高偉傑都常這樣用，分析跟修改的精度會明顯提升。<strong>之後想試 Cursor 改 code 的時候，這個技巧更重要</strong> — 沒有 @ 直接餵檔，AI 在實作時更容易找錯檔或只看到片段就動手。</p>
+
+<h4>3. 同類型編譯錯誤一次解決</h4>
 <p>觀察到同一個 <code>BuildingPositionConfig</code> 找不到型別的錯誤<strong>跨兩段對話貼了 3 次</strong>（不同行號但同根因）。下次遇到可以這樣問：</p>
 <div class="tip">
 <strong>建議 prompt：</strong>「我有 N 個 CS0246 錯誤都是找不到 BuildingPositionConfig，請<strong>列出根因</strong>並給<strong>一次性解法</strong>。」
 </div>
 
-<h4>3. 把架構分析輸出成 Mermaid 圖</h4>
+<h4>4. 把架構分析輸出成 Mermaid 圖</h4>
 <p>你常請 AI 做架構分析（GVE 卡牌、AINpc、ActiveGuild 等），其實 AI 可以直接畫成圖：</p>
 <div class="tip">
 <strong>建議 prompt：</strong>「請分析 AINpc.cs 及相關腳本，<strong>並把類別關係輸出成 Mermaid classDiagram</strong>」<br>
 這樣可以直接貼到 Notion / Wiki 變成團隊共用文件，把分析價值留下來。
 </div>
 
-<h4>4. 場景檔比對搭配 git/P4 diff 工具</h4>
+<h4>5. 場景檔比對搭配 git/P4 diff 工具</h4>
 <p>場景檔（.unity）通常很長，AI 容易看漏細節。建議：</p>
 <ul>
   <li>主要用 <strong>git diff / P4 比對工具</strong>看實際差異</li>
