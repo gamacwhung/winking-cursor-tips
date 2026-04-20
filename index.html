@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>給唯晶團隊的 Cursor 使用觀察與技巧分享 — 兩週合併</title>
+<style>
+  :root { --primary: #2563eb; --dark: #1e293b; --gray: #64748b; --light: #f8fafc; --border: #e2e8f0; --green: #16a34a; --orange: #ea580c; --purple: #7c3aed; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Microsoft JhengHei", "Noto Sans TC", "Segoe UI", sans-serif; color: var(--dark); background: #fff; line-height: 1.7; }
+  .container { max-width: 920px; margin: 0 auto; padding: 40px 32px; }
+  h1 { font-size: 26px; border-bottom: 3px solid var(--primary); padding-bottom: 12px; margin-bottom: 8px; }
+  .subtitle { color: var(--gray); font-size: 14px; margin-bottom: 30px; }
+  h2 { font-size: 21px; color: var(--primary); margin: 36px 0 16px; padding-left: 12px; border-left: 4px solid var(--primary); }
+  h3 { font-size: 17px; margin: 22px 0 10px; }
+  h4 { font-size: 15px; margin: 18px 0 8px; color: var(--dark); }
+  p, li { font-size: 15px; }
+  p { margin-bottom: 10px; }
+  ul, ol { padding-left: 24px; margin-bottom: 12px; }
+  li { margin-bottom: 6px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 14px; }
+  th { background: var(--primary); color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; }
+  td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:nth-child(even) td { background: var(--light); }
+  .card { background: var(--light); border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; margin: 14px 0; }
+  .card h3 { margin-top: 0; color: var(--dark); font-size: 17px; }
+  .card.green { background: #f0fdf4; border-color: #86efac; }
+  .card.green h3 { color: #15803d; }
+  .card.purple { background: #faf5ff; border-color: #d8b4fe; }
+  .card.purple h3 { color: #7c3aed; }
+  .card.blue { background: #eff6ff; border-color: #bfdbfe; }
+  .card.blue h3 { color: #1d4ed8; }
+  .highlight { background: #fef9c3; padding: 2px 6px; border-radius: 3px; }
+  code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-family: Consolas, monospace; font-size: 13px; }
+  pre { background: #1e293b; color: #e2e8f0; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 10px 0 16px; font-size: 13px; line-height: 1.5; }
+  .toc { background: var(--light); border: 1px solid var(--border); border-radius: 8px; padding: 18px 24px; margin: 16px 0 26px; }
+  .toc h3 { margin-top: 0; }
+  .toc ol { margin-bottom: 0; }
+  .toc a { color: var(--primary); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .divider { border: none; border-top: 2px solid var(--border); margin: 36px 0; }
+  .prompt { background: #fff; border-left: 3px solid #94a3b8; padding: 6px 12px; margin: 4px 0 8px 8px; font-size: 13px; color: #475569; border-radius: 0 4px 4px 0; line-height: 1.5; }
+  .prompt::before { content: "💬 "; }
+  .tip { background: #ecfdf5; border-left: 4px solid var(--green); padding: 10px 14px; margin: 10px 0; border-radius: 0 4px 4px 0; font-size: 14px; }
+  .tip strong { color: #15803d; }
+  .pitfall { background: #fef2f2; border-left: 4px solid #f87171; padding: 10px 14px; margin: 10px 0; border-radius: 0 4px 4px 0; font-size: 14px; }
+  .pitfall strong { color: #b91c1c; }
+  .intro { background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 18px 22px; margin: 16px 0 28px; }
+  .footer-note { text-align: center; color: var(--gray); font-size: 13px; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border); }
+  .week-tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; margin-right: 6px; }
+  .w1 { background: #dbeafe; color: #1d4ed8; }
+  .w2 { background: #ede9fe; color: #6d28d9; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>給唯晶團隊的 Cursor 使用觀察與技巧分享</h1>
+<p class="subtitle">兩週合併版｜資料期間：2026/04/10 + 2026/04/17 ｜ 整理日期：2026/04/20</p>
+
+<div class="intro">
+<p>嗨大家好 👋</p>
+<p>感謝唯晶團隊願意把 Cursor 的對話紀錄分享給我們。這份文件是針對<strong>過去兩週</strong>的觀察整理，目的是<strong>提供一些 Cursor 使用上的技巧分享</strong>，希望能幫助大家更省力地用好工具。</p>
+<p>內容包含：</p>
+<ul style="margin-bottom:0;">
+  <li><strong>觀察到的好習慣</strong> — 大家做得很棒的地方，互相借鏡</li>
+  <li><strong>給每位成員的小技巧</strong> — 從你的使用方式延伸出來的進階用法</li>
+  <li><strong>通用技巧</strong> — Cursor 的常用功能與工作流</li>
+</ul>
+<p style="margin-top:10px; margin-bottom:0; color:var(--gray); font-size:14px;">所有建議都是「在你目前用法基礎上的延伸」，不需要改變既有習慣，挑有興趣的試試看就好。</p>
+</div>
+
+<div class="toc">
+<h3>目錄</h3>
+<ol>
+  <li><a href="#part1">兩週觀察到的亮點習慣</a></li>
+  <li><a href="#part2">給每位成員的個別技巧分享</a></li>
+  <li><a href="#part3">通用技巧 — 大家都可以試試看</a></li>
+  <li><a href="#part4">下次想一起聊的主題</a></li>
+</ol>
+</div>
+
+<!-- ============================== PART 1 ============================== -->
+<h2 id="part1">兩週觀察到的亮點習慣</h2>
+
+<div class="card green">
+<h3>🎯 劉思源 — 穩定的「分析+人工把關」品質導向</h3>
+<p>連續兩週維持「<strong>讓 AI 做分析、自己決定要不要改</strong>」的風格，是品質風險最低的使用方式。</p>
+<ul>
+  <li><span class="week-tag w1">W1</span>分析 GVE 卡牌系統、劇情系統，整理多檔案的調用關係</li>
+  <li><span class="week-tag w1">W1</span>會用「截圖讓 AI 辨識 IDE 中的腳本」這種有創意的方式</li>
+  <li><span class="week-tag w2">W2</span>分析 AINpc / ActiveGuild 架構</li>
+  <li><span class="week-tag w2">W2</span>嘗試 .unity 場景檔比對（資源層問題）</li>
+</ul>
+</div>
+
+<div class="card purple">
+<h3>🛠️ 紀閎耀 — 主動糾正 AI、用 AI 為自己造工具</h3>
+<p>會主動驗證 AI 輸出、糾正錯誤，本週嘗試用 AI 寫工具腳本是高槓桿用法。</p>
+<ul>
+  <li><span class="week-tag w1">W1</span>晝夜系統設計、Shader 除錯時，主動糾正 AI 把 SyncWeatherState 綁到事件上的錯誤</li>
+  <li><span class="week-tag w1">W1</span>會給 AI 領域知識作為前提條件（例如「IsIntoStore 在門外也可能是 true」）</li>
+  <li><span class="week-tag w2">W2</span>用 Ask 模式請 AI 寫 Editor 腳本掃 prefab 找紅點系統舊版殘留</li>
+  <li><span class="week-tag w2">W2</span>發現 AI 邏輯不對時（NoticeSetter 在父節點），明確指出應改為「祖先鏈」判斷</li>
+</ul>
+</div>
+
+<div class="card blue">
+<h3>⚡ 高偉傑 — 完整的「分析→選方案→執行」效率流程</h3>
+<p>第一週示範了最完整的 Agent 模式工作流。</p>
+<ul>
+  <li><span class="week-tag w1">W1</span>善用 <code>@檔名 (行數)</code> 語法精準指定檔案</li>
+  <li><span class="week-tag w1">W1</span>能在 AI 給出 A/B 方案後做出選擇並推進到執行</li>
+  <li><span class="week-tag w1">W1</span>把 AI 用於解決實際編譯問題（跨平台 #if 缺 fallback），產出可直接套用的 patch</li>
+</ul>
+</div>
+
+<div class="card" style="background:#fdf4ff; border-color:#f0abfc;">
+<h3>🌟 趙健智 — 第二週大幅躍升：完整 Plan 模式深度開發</h3>
+<p>從第 1 週的初次嘗試，第 2 週直接用 Cursor 完成<strong>整個 Invest 系統的開發</strong>（UI 重構、篩選排序、員工編制、假伺服器、持久化、領獎、自動指派）。</p>
+<ul>
+  <li><span class="week-tag w2">W2</span>使用 <strong>Plan 模式</strong>讓 AI 先列計畫再執行</li>
+  <li><span class="week-tag w2">W2</span>主動推進架構重構（把假資料從 UI 層搬到 Manager/System 層、要求假伺服器獨立成檔）</li>
+  <li><span class="week-tag w2">W2</span>會持續糾正 AI 的設計問題（員工不能在多個投資單、稀有度排序邏輯等）</li>
+</ul>
+</div>
+
+<hr class="divider">
+
+<!-- ============================== PART 2 ============================== -->
+<h2 id="part2">給每位成員的個別技巧分享</h2>
+
+<p style="color:var(--gray); font-size:14px;">以下技巧都是<strong>「在你目前用法基礎上的延伸」</strong>，挑你有興趣的試試看就好。</p>
+
+<!-- 劉思源 -->
+<div class="card">
+<h3>💡 給劉思源</h3>
+
+<h4>1. 你的「只分析不直接改」風格可以再進化</h4>
+<p>你的人工把關習慣很值得肯定。如果想讓 AI 也幫你寫 code，但又不放心讓它直接套用：</p>
+<div class="tip">
+<strong>建議做法：</strong>請 AI <strong>「給我修改的 patch / diff，但先不要 apply」</strong>，你在 diff 上逐行 review，OK 才手動接受。<br>
+既保留人工把關，又能省下手寫的時間。
+</div>
+
+<h4>2. 同類型編譯錯誤一次解決</h4>
+<p>觀察到同一個 <code>BuildingPositionConfig</code> 找不到型別的錯誤<strong>跨兩段對話貼了 3 次</strong>（不同行號但同根因）。下次遇到可以這樣問：</p>
+<div class="tip">
+<strong>建議 prompt：</strong>「我有 N 個 CS0246 錯誤都是找不到 BuildingPositionConfig，請<strong>列出根因</strong>並給<strong>一次性解法</strong>。」
+</div>
+
+<h4>3. 把架構分析輸出成 Mermaid 圖</h4>
+<p>你常請 AI 做架構分析（GVE 卡牌、AINpc、ActiveGuild 等），其實 AI 可以直接畫成圖：</p>
+<div class="tip">
+<strong>建議 prompt：</strong>「請分析 AINpc.cs 及相關腳本，<strong>並把類別關係輸出成 Mermaid classDiagram</strong>」<br>
+這樣可以直接貼到 Notion / Wiki 變成團隊共用文件，把分析價值留下來。
+</div>
+
+<h4>4. 場景檔比對搭配 git/P4 diff 工具</h4>
+<p>場景檔（.unity）通常很長，AI 容易看漏細節。建議：</p>
+<ul>
+  <li>主要用 <strong>git diff / P4 比對工具</strong>看實際差異</li>
+  <li>AI 用來「解讀某段差異是什麼意思」會比較準</li>
+</ul>
+</div>
+
+<!-- 紀閎耀 -->
+<div class="card">
+<h3>💡 給紀閎耀</h3>
+
+<h4>1. 拆解大任務 — AI 在小範圍上表現最好</h4>
+<p>觀察到部分任務的範圍比較大（例如「晝夜循環該做什麼」「掃所有紅點 prefab 找三種情況」），AI 一次處理會容易出錯或方向偏。</p>
+<div class="tip">
+<strong>建議做法：</strong>把大任務拆成幾個小步驟，<strong>一個一個確認再往下</strong>。例如紅點系統可以拆成：
+<ol style="margin:6px 0 0 20px;">
+  <li>先請 AI <strong>列出掃描的 plan</strong>（不寫 code），你 review 過 OK 才往下</li>
+  <li>請 AI 產<strong>核心掃描邏輯</strong>（單一資料夾、單一條件），跑過確認結果對</li>
+  <li>再請 AI <strong>擴充其他條件 / 範圍</strong></li>
+</ol>
+這樣每一步都是小範圍、可驗證的，AI 出錯的機率大幅降低。
+</div>
+
+<h4>2. 處理 AI 中文輸出亂碼</h4>
+<p>你提到「<strong>你怎麼產了一堆亂碼</strong>」，這是 AI 模型在長中文+程式碼混排時偶發的字元損壞。減少觸發：</p>
+<ul>
+  <li>在 prompt 裡指定「<strong>程式碼註解請用英文，說明文字用簡短繁中</strong>」</li>
+  <li>產出較長的工具腳本時，可以分段請求（先產 Python 版、再產 C# 版）</li>
+  <li>出現亂碼時直接說「<strong>請用純 ASCII 重新輸出一次</strong>」就會修正</li>
+</ul>
+
+<h4>3. 第一次 prompt 就附實際結構範例</h4>
+<p>本週發現「祖先鏈邏輯」是因為實際 prefab 結構跟 AI 預設假設不同。</p>
+<div class="tip">
+<strong>建議做法：</strong>在第一次 prompt 就附 <strong>1-2 個實際 prefab 的局部結構截圖或 YAML 片段</strong>，AI 就不會用錯誤假設出方案，可以省一輪糾正。
+</div>
+
+<h4>4. 「用 AI 造工具」的方向很對，可以更常用</h4>
+<p>你本週的紅點系統稽核工具是<strong>非常好的用法</strong>，這類「一次寫好可重複使用」的工作很適合：</p>
+<ul>
+  <li>找 missing reference 的 prefab</li>
+  <li>找命名不符規範的腳本</li>
+  <li>批次重新命名/搬移資源</li>
+  <li>找掛了 component 但已不被引用的物件</li>
+</ul>
+</div>
+
+<!-- 高偉傑 -->
+<div class="card">
+<h3>💡 給高偉傑</h3>
+
+<h4>1. 你的「分析→選方案→執行」工作流非常好，請繼續保持</h4>
+<p>你在 <code>BuildingManager.Floor.cs</code> 的處理是團隊內最完整的 Agent 模式示範：分析 → 拿到 A/B 方案 → 選一個 → 執行。這個流程的好處是<strong>每一步你都有控制權</strong>，AI 不會自己偏掉。</p>
+
+<h4>2. 進階：改完後請 AI 再 review 自己的修改</h4>
+<p>效率型使用者最大的風險是漏掉 AI 的隱性錯誤。建議養成二次驗證習慣：</p>
+<div class="tip">
+<strong>建議 prompt：</strong>「你剛剛改了 X 檔案，<strong>請 review 自己的修改</strong>，找出有沒有：(1) 沒處理到的邊界條件 (2) 跟原本邏輯衝突的地方 (3) 可能的 NRE 或記憶體問題」<br>
+特別在跨平台 (#if) 或生命週期相關的修改上很有用。
+</div>
+
+<h4>3. 跨檔分析可以一次餵多個 @</h4>
+<p>你已經會用 <code>@檔名 (行數)</code>，可以再進一步一次餵多個檔案：</p>
+<div class="prompt">@UIGamePassPanel.cs @GamePassManager.cs @GamePassSystem.cs 請分析這三者的職責分配是否合理，有沒有可以合併或拆分的地方</div>
+</div>
+
+<!-- 趙健智 -->
+<div class="card">
+<h3>💡 給趙健智</h3>
+
+<h4>1. 「先把需求問清楚再實作」— 避免 AI 改來改去</h4>
+<p>觀察到本週 96 輪對話中，有些需求<strong>反覆貼了多次</strong>（例如「員工不能在多個投資單」貼 2 次、「稀有度排序邏輯」貼 3 次），這通常是「AI 第一次理解不夠完整就動手改」造成的循環。</p>
+<div class="tip">
+<strong>建議做法：複雜需求「先問清楚再實作」三步驟</strong>
+<ol style="margin:6px 0 0 20px;">
+  <li>第一段先說「<strong>我等下要做 X 功能</strong>，<strong>你覺得需要先問我哪些問題</strong>才能準確實作？」</li>
+  <li>AI 會列出它的疑問，你一次回答完</li>
+  <li>確認 AI 真的理解了，再說「OK，請實作」</li>
+</ol>
+這個方式可以把「邊做邊修」的循環，變成「想清楚一次做對」。
+</div>
+
+<h4>2. 用 Cursor Rules / AGENTS.md 管理長期規則</h4>
+<p>觀察到你需要在對話中重複強調的「專案規則」（例如「員工不能在多個投資單」「稀有度排序由高到低」「Timer 從 OrgPanel 切回 Panel 時不要重啟」），其實可以寫成<strong>專案級長期規則</strong>。</p>
+<div class="tip">
+<strong>建議做法：</strong>在專案根目錄建立 <code>AGENTS.md</code>，把這類規則寫進去。每次新對話 AI 都會自動讀取，<strong>不用重貼</strong>。<br>
+範例內容：
+<pre style="font-size:12px; padding:10px; margin-top:6px;">
+# Invest 系統規則
+- 一個員工同時間只能在一個投資單
+- 稀有度顯示順序：由高到低（SSR > SR > R）
+- Timer 從 InvestOrgPanel 切回 InvestPanel 時不要重新計時
+- 假伺服器邏輯放在 InvestFakeServer.cs，UI 層不直接接觸假資料
+</pre>
+</div>
+
+<h4>3. 大功能完成就開新對話</h4>
+<p>單段 96 輪對話雖然展現了你的深度使用能力，但 AI 在長對話中會慢慢忘記早期決策。建議：</p>
+<ul>
+  <li>每完成一個獨立功能（例如「編制系統」做完後）就<strong>開新對話</strong></li>
+  <li>同樣的需求/糾正講第 2 次以上 → 該開新對話了</li>
+  <li>新對話開頭可以請 AI 先「<strong>總結目前已完成 + 重要決策</strong>」當作 context</li>
+</ul>
+
+<h4>4. Plan 模式的進階用法</h4>
+<p>你已經會用 Plan 模式很棒，可以再進一步：</p>
+<ul>
+  <li>大功能開發前先讓 AI 出 plan（不執行）</li>
+  <li><strong>自己 review plan</strong>，覺得方向對才按 Implement</li>
+  <li>覺得 plan 漏了什麼，先補完整再實作</li>
+</ul>
+</div>
+
+<hr class="divider">
+
+<!-- ============================== PART 3 ============================== -->
+<h2 id="part3">通用技巧 — 大家都可以試試看</h2>
+
+<div class="card">
+<h3>🔧 技巧 1：Cursor Rules / AGENTS.md — 專案級長期記憶</h3>
+<p>把「整個專案都要遵守的規則」寫到 <code>.cursor/rules/</code> 或專案根目錄的 <code>AGENTS.md</code>，AI 每次都會自動讀取，不用每次重貼。</p>
+<p><strong>適合放進去的內容：</strong></p>
+<ul>
+  <li>專案命名規則（例如「Manager 命名規則」「UI 前綴」）</li>
+  <li>禁用 API（例如「不要用 SendMessage」「Update 裡禁止 GetComponent」）</li>
+  <li>架構約束（例如「Manager 只透過 System 跟 server 溝通」）</li>
+  <li>領域知識（例如「IsIntoStore 在門外也可能是 true」）</li>
+  <li>業務規則（例如「員工不能同時在多個投資單」）</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>🔧 技巧 2：@ 語法 — 精準指定檔案</h3>
+<p>在 Cursor chat 中用 <code>@檔名</code> 可以把整個檔案內容直接餵給 AI，比讓 AI 自己搜尋更精準快速。</p>
+<div class="prompt">@UIInvestPanel.cs (1-100) 請分析這段</div>
+<div class="prompt">@BuildingManager.Floor.cs @BuildingFloor.cs 這兩個腳本的關聯</div>
+</div>
+
+<div class="card">
+<h3>🔧 技巧 3：「先問再做」工作流 — 避免 AI 改來改去</h3>
+<p>複雜或模糊的需求，可以先讓 AI 確認理解再實作：</p>
+<div class="tip">
+<strong>萬用 prompt：</strong>「我等下要做 X 功能，<strong>你覺得需要先問我哪些問題</strong>才能準確實作？」<br>
+AI 會列出它的疑問清單，你一次回答完，比邊做邊改省時間很多。
+</div>
+</div>
+
+<div class="card">
+<h3>🔧 技巧 4：拆解大任務</h3>
+<p>AI 在<strong>小範圍、可驗證</strong>的任務上表現最好。大功能建議拆成：</p>
+<ol>
+  <li><strong>列計畫</strong>（不寫 code）— 你 review 方向</li>
+  <li><strong>產核心邏輯</strong>（單一情境）— 跑過確認結果</li>
+  <li><strong>擴充其他情境</strong></li>
+  <li><strong>邊界條件處理</strong>（null 檢查、錯誤處理等）</li>
+</ol>
+<p>每一步都可驗證，AI 出錯的機率大幅降低。</p>
+</div>
+
+<div class="card">
+<h3>🔧 技巧 5：開新對話的時機</h3>
+<p>長對話 AI 容易遺忘早期決策、犯重複的錯。建議在以下時機開新對話：</p>
+<ul>
+  <li>完成一個獨立功能模組</li>
+  <li>同樣的需求/糾正講第 2 次以上</li>
+  <li>主題切換（例如從 Invest 系統跳到 Plot 系統）</li>
+  <li>對話超過 30-50 輪</li>
+</ul>
+<p style="font-size:14px; color:var(--gray);">開新對話前可以請 AI 「<strong>總結目前已完成 + 待辦 + 重要決策</strong>」，貼到新對話開頭當 context。</p>
+</div>
+
+<div class="card">
+<h3>🔧 技巧 6：給 AI 領域知識作為前提條件</h3>
+<p>在第一次 prompt 就主動提供：</p>
+<ul>
+  <li>專案特有術語的解釋</li>
+  <li>已知的約束條件（例如「不要動到事件訂閱邏輯」）</li>
+  <li>不希望被改動的部分</li>
+  <li>實際資料的結構範例（截圖或片段）</li>
+</ul>
+<p>這樣可以避免 AI 用錯誤假設出方案，省下糾正的輪數。</p>
+</div>
+
+<hr class="divider">
+
+<!-- ============================== PART 4 ============================== -->
+<h2 id="part4">下次想一起聊的主題（歡迎提需求）</h2>
+
+<div class="card">
+<p>有任何 Cursor 使用上的疑問或想看的範例都歡迎跟我們提，例如：</p>
+<ul>
+  <li>想看實際的 <code>AGENTS.md</code> 範例</li>
+  <li>遇到 AI 出錯不知道怎麼引導</li>
+  <li>有想嘗試但不確定怎麼開始的進階用法</li>
+  <li>工具本身的問題（穩定性、亂碼、效能等）</li>
+  <li>對 Token / 計費 / 上下文限制的疑問 — <strong>如果有任何使用上的顧慮，都很歡迎告訴我們</strong></li>
+</ul>
+<p>透過 PM 窗口或在下次同步時提出都可以，我們會整理回覆。</p>
+</div>
+
+<p class="footer-note">
+  本文件由唯晶夥伴團隊整理 ｜ 2026/04/20<br>
+  涵蓋 2026/04/10 + 2026/04/17 兩週的觀察 ｜ 內容僅作為使用技巧建議參考
+</p>
+
+</div>
+</body>
+</html>
