@@ -143,7 +143,14 @@
 <ul style="margin:6px 0 0 20px;">
   <li><strong>整段修改：</strong>讓 Cursor 直接改，每個 diff 都會跳出 <code>Accept</code> / <code>Reject</code> 按鈕，不滿意按 Reject 或 <code>Ctrl+Z</code> 就回到原狀，<strong>沒有風險</strong></li>
   <li><strong>局部片段修改：</strong>在編輯器裡用滑鼠選取要改的程式碼 → 按 <code>Ctrl+K</code> → 用自然語言下指令（例如「改成 async」「加 null 檢查」「改用 LINQ」），<strong>可以在小範圍實驗</strong>不影響其他地方</li>
-  <li><strong>整檔重構：</strong>在 Chat 用 <code>@檔名</code> 加上「請改成 XX 風格」</li>
+  <li><strong>整檔重構：</strong>在 Chat 用 <code>@檔名</code> 加上具體目標，例如：
+    <ul style="margin:4px 0 0 20px;">
+      <li>「把這個類別的職責拆成 Manager + System 兩層」</li>
+      <li>「事件訂閱補上對應的 unsubscribe」</li>
+      <li>「把這些 if/else 改成 Strategy Pattern」</li>
+      <li>「把命名改成符合專案規範（PascalCase / 私有 _ 開頭）」</li>
+    </ul>
+  </li>
 </ul>
 </div>
 <p>建議下次有適合的時機，試著從「請分析」進階到「請改」。<strong>你的把關習慣 + Cursor 的 Accept/Reject 機制 = 安全又有效率</strong>。如果改出來品質不好可以馬上 reject，沒有任何負擔。</p>
