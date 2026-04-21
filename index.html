@@ -197,13 +197,23 @@
 這樣每一步都是小範圍、可驗證的，AI 出錯的機率大幅降低。
 </div>
 
-<h4>2. 處理 AI 中文輸出亂碼</h4>
-<p>你提到「<strong>你怎麼產了一堆亂碼</strong>」，這是 AI 模型在長中文+程式碼混排時偶發的字元損壞。減少觸發：</p>
-<ul>
-  <li>在 prompt 裡指定「<strong>程式碼註解請用英文，說明文字用簡短繁中</strong>」</li>
-  <li>產出較長的工具腳本時，可以分段請求（先產 Python 版、再產 C# 版）</li>
-  <li>出現亂碼時直接說「<strong>請用純 ASCII 重新輸出一次</strong>」就會修正</li>
+<h4>2. 中文輸出亂碼 — 多半是系統編碼設定問題</h4>
+<p>你遇到「<strong>你怎麼產了一堆亂碼</strong>」那一幕，AI 輸出裡出現的 <code>�</code> 是 <strong>Unicode replacement character (U+FFFD)</strong>，代表中文 byte 流經過某段「不是 UTF-8」的環節時被替換掉了。<strong>這通常是環境設定問題、不是 AI 本身壞掉</strong>，從根本解決會比每次叫 AI 重產來得省事。</p>
+<div class="tip">
+<strong>從根本解決（建議優先）：</strong>
+<ul style="margin:6px 0 0 20px;">
+  <li><strong>Windows 系統 UTF-8 化：</strong>「設定 → 時間與語言 → 語言與地區 → 系統管理語言設定 → 變更系統地區設定」勾選「<strong>Beta: 使用 Unicode UTF-8 提供全球語言支援</strong>」，重開機。這個設定打開後 PowerShell / cmd 預設都會用 UTF-8，AI 經過 terminal 或檔案的中文都不會再壞。</li>
+  <li><strong>PowerShell 單次：</strong><code>chcp 65001</code> 切到 UTF-8 codepage，當下 session 有效。</li>
+  <li><strong>Cursor 開檔：</strong>確認檔案是 UTF-8（右下角會顯示編碼，可手動切換）。</li>
 </ul>
+</div>
+<div class="tip">
+<strong>如果暫時不想改系統設定的 workaround：</strong>
+<ul style="margin:6px 0 0 20px;">
+  <li>在 prompt 裡指定「<strong>程式碼註解用英文、說明文字用簡短繁中</strong>」，減少中文 byte 數就減少出錯機率</li>
+  <li>出現亂碼時請 AI「<strong>用純 ASCII 重新輸出一次</strong>」</li>
+</ul>
+</div>
 
 <h4>3. 第一次 prompt 就附實際結構範例</h4>
 <p>本週發現「祖先鏈邏輯」是因為實際 prefab 結構跟 AI 預設假設不同。</p>
