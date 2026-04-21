@@ -210,7 +210,8 @@
 <div class="tip">
 <strong>如果暫時不想改系統設定的 workaround：</strong>
 <ul style="margin:6px 0 0 20px;">
-  <li>在 prompt 裡指定「<strong>程式碼註解用英文、說明文字用簡短繁中</strong>」，減少中文 byte 數就減少出錯機率</li>
+  <li><strong>會跑進 terminal 的東西（指令、shell script、Python 工具腳本的 print/註解）一律用英文</strong> — 中文在非 UTF-8 的 codepage 下八成會壞，沒模糊地帶</li>
+  <li>純檔案內的 C# 程式碼註解可以維持中文（Unity / Cursor 開檔本身是 UTF-8 沒問題）</li>
   <li>出現亂碼時請 AI「<strong>用純 ASCII 重新輸出一次</strong>」</li>
 </ul>
 </div>
@@ -229,25 +230,6 @@
   <li>批次重新命名/搬移資源</li>
   <li>找掛了 component 但已不被引用的物件</li>
 </ul>
-</div>
-
-<!-- 高偉傑 -->
-<div class="card">
-<h3>💡 給高偉傑</h3>
-
-<h4>1. 你的「分析→選方案→執行」工作流非常好，請繼續保持</h4>
-<p>你在 <code>BuildingManager.Floor.cs</code> 的處理是團隊內最完整的 Agent 模式示範：分析 → 拿到 A/B 方案 → 選一個 → 執行。這個流程的好處是<strong>每一步你都有控制權</strong>，AI 不會自己偏掉。</p>
-
-<h4>2. 進階：改完後請 AI 再 review 自己的修改</h4>
-<p>效率型使用者最大的風險是漏掉 AI 的隱性錯誤。建議養成二次驗證習慣：</p>
-<div class="tip">
-<strong>建議 prompt：</strong>「你剛剛改了 X 檔案，<strong>請 review 自己的修改</strong>，找出有沒有：(1) 沒處理到的邊界條件 (2) 跟原本邏輯衝突的地方 (3) 可能的 NRE 或記憶體問題」<br>
-特別在跨平台 (#if) 或生命週期相關的修改上很有用。
-</div>
-
-<h4>3. 跨檔分析可以一次餵多個 @</h4>
-<p>你已經會用 <code>@檔名 (行數)</code>，可以再進一步一次餵多個檔案：</p>
-<div class="prompt">@UIGamePassPanel.cs @GamePassManager.cs @GamePassSystem.cs 請分析這三者的職責分配是否合理，有沒有可以合併或拆分的地方</div>
 </div>
 
 <!-- 趙健智 -->
